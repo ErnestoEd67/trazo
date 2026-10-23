@@ -27,14 +27,14 @@ jobs:
 
       - name: Verify package-lock.json is in sync
         run: |
-          npm ci --ignore-scripts
+          npm install --package-lock-only
           git diff --exit-code package-lock.json || (
             echo "package-lock.json desincronizado, ejecuta npm install localmente y commitea el resultado"
             exit 1
           )
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Run ESLint
         run: npm run lint
